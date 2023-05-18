@@ -34,9 +34,12 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Move();
-        Character();
+        if (animator.GetBool("checkDie") == false)
+        {
+            mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            Move();
+            Character();
+        }
 
 
     }
@@ -289,7 +292,8 @@ public class PlayerMove : MonoBehaviour
             Invoke("ResetInvincible", invincibleTime);
             if (lifetext.life == 0)
             {
-                Destroy(gameObject);
+                animator.SetBool("checkDie", true);
+                Destroy(gameObject, 4f);
             }
         }
     }
@@ -303,7 +307,8 @@ public class PlayerMove : MonoBehaviour
             Invoke("ResetInvincible", invincibleTime);
             if (lifetext.life == 0)
             {
-                Destroy(gameObject);
+                animator.SetBool("checkDie", true);
+                Destroy(gameObject, 4f);
             }
         }
     }
@@ -341,5 +346,7 @@ public class PlayerMove : MonoBehaviour
     {
 
     }
+
+  
 }
 

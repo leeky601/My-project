@@ -41,32 +41,34 @@ public class Enemy2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        LookAt();
-
-        // Move towards player
-
-        direction = player.position - transform.position;
-        // Check if in attack range
-        float distance = Vector2.Distance(transform.position, player.position);
-        if (distance <= range)
+        if (animator.GetBool("checkDie") == false)
         {
+            LookAt();
 
-            if (attackTimer <= 0)
+            // Move towards player
+
+            direction = player.position - transform.position;
+            // Check if in attack range
+            float distance = Vector2.Distance(transform.position, player.position);
+            if (distance <= range)
             {
-                // Shoot projectile
-                GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-                projectile.GetComponent<Rigidbody2D>().AddForce(direction.normalized * 500f);
-                attackTimer = attackDelay;
+
+                if (attackTimer <= 0)
+                {
+                    // Shoot projectile
+                    GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+                    projectile.GetComponent<Rigidbody2D>().AddForce(direction.normalized * 500f);
+                    attackTimer = attackDelay;
+                }
+                else
+                {
+                    attackTimer -= Time.deltaTime;
+                }
             }
             else
             {
-                attackTimer -= Time.deltaTime;
+                Move();
             }
-        }
-        else
-        {
-            Move();
         }
     }
 
@@ -105,8 +107,8 @@ public class Enemy2 : MonoBehaviour
             if (hp == 0)
             {
                 Instantiate(itemDropPrefab, transform.position, Quaternion.identity);
-
-                Destroy(gameObject);
+                animator.SetBool("checkDie", true);
+                Destroy(gameObject, 0.15f);
             }
         }
 

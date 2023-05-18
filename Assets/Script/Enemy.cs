@@ -36,8 +36,11 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        LookAt();
+        if (animator.GetBool("checkDie") == false)
+        {
+            Move();
+            LookAt();
+        }
     }
 
 
@@ -99,8 +102,8 @@ public class Enemy : MonoBehaviour
             if (hp == 0)
             {
                 Instantiate(itemDropPrefab, transform.position, Quaternion.identity);
-
-                Destroy(gameObject);
+                animator.SetBool("checkDie", true);
+                Destroy(gameObject,0.15f);
             }
         }
 

@@ -11,7 +11,7 @@ public class LifeText : MonoBehaviour
     public int life;
     void Start()
     {
-        life = 100;
+        life = 2;
     }
 
     // Update is called once per frame
