@@ -9,6 +9,7 @@ public class Hpitem : MonoBehaviour
     void Start()
     {
         lifetext = GameObject.Find("LifeText").GetComponent<LifeText>();
+        Destroy(gameObject,2.5f);
     }
 
     // Update is called once per frame

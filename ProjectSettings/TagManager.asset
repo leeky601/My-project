@@ -48,6 +48,9 @@ TagManager:
   - name: BG
     uniqueID: 766850593
     locked: 0
+  - name: item
+    uniqueID: 337941953
+    locked: 0
   - name: Character
     uniqueID: 3230382111
     locked: 0

@@ -12,7 +12,7 @@ public class Speeditem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Destroy(gameObject,2.5f);
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class Speeditem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerController = other.GetComponent<PlayerMove>();
-            if (playerController != null && playerController.speed == 3.0f)
+            if (playerController != null && playerController.speed == 3.0)
             {
                 playerController.StartSpeedBoost();
                 // 아이템 효과 시작

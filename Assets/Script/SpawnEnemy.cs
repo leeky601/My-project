@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
-    public GameObject enemyPrefab; // 적 프리팹
+    public GameObject[] enemyPrefabs; // 적 프리팹
     public float spawnDelay = 0f; // 최초 생성 딜레이
     public float spawnInterval = 5f; // 생성 주기
-    public float spawnRadius = 5f; // 생성 반경
     public float minDistanceToPlayer = 10f; // 플레이어와의 최소 거리
     public GameObject spawnAreaObject; // 생성 영역 오브젝트
     private Rect spawnArea; // 생성 영역
 
+   
     void Start()
     {
         Vector3 position = spawnAreaObject.transform.position;
@@ -38,8 +38,9 @@ public class SpawnEnemy : MonoBehaviour
             spawnPos = new Vector3(x, 0f, z);
         }
 
-        // 적을 생성합니다
-        Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        GameObject randomEnemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+        Instantiate(randomEnemyPrefab, spawnPos, Quaternion.identity);
+
     }
 
 }
