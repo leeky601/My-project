@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3811882179436832454}
   - component: {fileID: 5590405089916001889}
+  - component: {fileID: 8328450741058323954}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -28,8 +29,7 @@ Transform:
   m_LocalPosition: {x: 3.28, y: 0.30132163, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1073944573374518365}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -85,50 +85,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &5765351203645807100
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1073944573374518365}
-  - component: {fileID: 7085534224644618241}
-  m_Layer: 0
-  m_Name: laser
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1073944573374518365
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5765351203645807100}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3811882179436832454}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7085534224644618241
+--- !u!114 &8328450741058323954
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5765351203645807100}
+  m_GameObject: {fileID: 2085714046018621676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e492f126b5361ea4c9c31471288aa978, type: 3}
+  m_Script: {fileID: 11500000, guid: b920f65dc8e104b459c7a5e6fb63d215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sphereTransform: {fileID: 3811882179436832454}
-  playerTransform: {fileID: 126578187082088393, guid: b002c40c7ea4c054c8e1422b2307807f, type: 3}
-  stickPrefab: {fileID: 4242412513318270229, guid: 4f43a97c17122cb49a6f0432f0e9542d, type: 3}
