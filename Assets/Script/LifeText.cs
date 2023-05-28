@@ -11,13 +11,12 @@ public class LifeText : MonoBehaviour
     public int life;
     void Start()
     {
-        life = 3;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        life_text.text = "Life : " + life;
     }
 
     public void Dead()

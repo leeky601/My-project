@@ -8,6 +8,7 @@ TagManager:
   - Bullet_P
   - Bullet_E
   - Wall
+  - Heart
   layers:
   - Default
   - TransparentFX
@@ -59,4 +60,10 @@ TagManager:
     locked: 0
   - name: fil
     uniqueID: 3008980037
+    locked: 0
+  - name: UI
+    uniqueID: 3527219833
+    locked: 0
+  - name: UI2
+    uniqueID: 3208723423
     locked: 0
