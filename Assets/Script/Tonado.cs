@@ -18,6 +18,7 @@ public class Tonado : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        player = GameObject.Find("Player").transform;
         Vector2 direction = player.position - transform.position;
         transform.position += (Vector3)direction.normalized * speed * Time.deltaTime;
     }

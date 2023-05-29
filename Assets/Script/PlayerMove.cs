@@ -292,6 +292,16 @@ public class PlayerMove : MonoBehaviour
             Invoke("ResetInvincible", invincibleTime);
             if (lifetext.life == 0)
             {
+                animator.SetBool("FrontIdle", false);
+                animator.SetBool("LeftIdle", false);
+                animator.SetBool("RightIdle", false);
+                animator.SetBool("BackIdle", false);
+                animator.SetBool("LeftFrontMove", false);
+                animator.SetBool("RightFrontMove", false);
+                animator.SetBool("LeftMove", false);
+                animator.SetBool("RightMove", false);
+                animator.SetBool("LeftBackMove", false);
+                animator.SetBool("RightBackMove", false);
                 animator.SetBool("checkDie", true);
                 Destroy(gameObject, 4f);
             }
@@ -307,6 +317,16 @@ public class PlayerMove : MonoBehaviour
             Invoke("ResetInvincible", invincibleTime);
             if (lifetext.life == 0)
             {
+                animator.SetBool("FrontIdle", false);
+                animator.SetBool("LeftIdle", false);
+                animator.SetBool("RightIdle", false);
+                animator.SetBool("BackIdle", false);
+                animator.SetBool("LeftFrontMove", false);
+                animator.SetBool("RightFrontMove", false);
+                animator.SetBool("LeftMove", false);
+                animator.SetBool("RightMove", false);
+                animator.SetBool("LeftBackMove", false);
+                animator.SetBool("RightBackMove", false);
                 animator.SetBool("checkDie", true);
                 Destroy(gameObject, 4f);
             }
