@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 476115348}
   - component: {fileID: 476115350}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: LaserATK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
