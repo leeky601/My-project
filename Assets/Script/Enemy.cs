@@ -24,8 +24,12 @@ public class Enemy : MonoBehaviour
     private int hp;
 
     public GameObject itemDropPrefab;
+
+    public AudioClip monsterDieClip; 
+    private AudioSource audioSource;
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         player = GameObject.Find("Player").transform;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -103,6 +107,8 @@ public class Enemy : MonoBehaviour
             {
                 Instantiate(itemDropPrefab, transform.position, Quaternion.identity);
                 animator.SetBool("checkDie", true);
+                audioSource.clip = monsterDieClip;
+                audioSource.Play();
                 Destroy(gameObject,0.15f);
             }
         }

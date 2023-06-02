@@ -27,9 +27,14 @@ public class Enemy2 : MonoBehaviour
     public GameObject itemDropPrefab;
 
     Vector2 direction;
+
+    public AudioClip monsterDieClip;
+    private AudioSource audioSource;
     // Start is called before the first frame update
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         player = GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -108,6 +113,8 @@ public class Enemy2 : MonoBehaviour
             {
                 Instantiate(itemDropPrefab, transform.position, Quaternion.identity);
                 animator.SetBool("checkDie", true);
+                audioSource.clip = monsterDieClip;
+                audioSource.Play();
                 Destroy(gameObject, 0.15f);
             }
         }

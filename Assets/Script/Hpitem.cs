@@ -5,9 +5,12 @@ using UnityEngine;
 public class Hpitem : MonoBehaviour
 {
     private LifeText lifetext;
+
+   
     // Start is called before the first frame update
     void Start()
     {
+      
         lifetext = GameObject.Find("LifeText").GetComponent<LifeText>();
         Destroy(gameObject,2.5f);
     }
@@ -22,6 +25,7 @@ public class Hpitem : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+           
             lifetext.Heal();
             Destroy(gameObject);
         }

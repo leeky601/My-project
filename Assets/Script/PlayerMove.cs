@@ -19,9 +19,15 @@ public class PlayerMove : MonoBehaviour
 
     public float invincibleTime = 0.5f; // 公利 矫埃
     private bool invincible = false; // 公利 惑怕 咯何
+
+    public AudioClip itemSoundClip;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
+
+        audioSource = GetComponent<AudioSource>();
+
         animator = GetComponent<Animator>();
 
         mainCamera = Camera.main;
@@ -305,6 +311,12 @@ public class PlayerMove : MonoBehaviour
                 animator.SetBool("checkDie", true);
                 Destroy(gameObject, 4f);
             }
+        }
+
+        if (other.CompareTag("Item"))
+        {
+            audioSource.clip = itemSoundClip;
+            audioSource.Play();
         }
     }
 

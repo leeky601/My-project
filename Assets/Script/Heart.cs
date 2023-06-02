@@ -6,7 +6,7 @@ public class Heart : MonoBehaviour
 {
     private LifeText lifetext;
 
-    private bool heal;
+    
 
     public GameObject heart_1;
     public GameObject heart_2;
@@ -16,8 +16,6 @@ public class Heart : MonoBehaviour
     void Start()
     {
         lifetext = GameObject.Find("LifeText").GetComponent<LifeText>();
-
-        heal = false;
     }
 
     private void Update()

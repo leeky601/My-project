@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5437272344209903601}
   m_Layer: 0
   m_Name: Speeditem
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e47a2ef7c3eae45a0c4862d3015bba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemSoundClip: {fileID: 8300000, guid: c9086effe4713964fb786dffb4c47c99, type: 3}
 --- !u!95 &5437272344209903601
 Animator:
   serializedVersion: 5
