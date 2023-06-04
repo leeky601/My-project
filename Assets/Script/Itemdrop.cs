@@ -9,12 +9,14 @@ public class Itemdrop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         if (Random.value <= dropProbability)
         {
             // 아이템을 랜덤으로 선택하여 드롭합니다.
             int randomIndex = Random.Range(0, itemPrefabs.Length);
             GameObject item = Instantiate(itemPrefabs[randomIndex], transform.position, Quaternion.identity);
         }
+        Destroy(gameObject, 2.5f);
     }
 
     // Update is called once per frame

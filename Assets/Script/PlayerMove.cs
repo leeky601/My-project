@@ -21,6 +21,7 @@ public class PlayerMove : MonoBehaviour
     private bool invincible = false; // 무적 상태 여부
 
     public AudioClip itemSoundClip;
+    public AudioClip hitSoundClip;
     private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
@@ -325,6 +326,7 @@ public class PlayerMove : MonoBehaviour
         if (!invincible && other.gameObject.CompareTag("Enemy"))
         {
             lifetext.Dead();
+            audioSource.PlayOneShot(hitSoundClip);
             invincible = true;
             Invoke("ResetInvincible", invincibleTime);
             if (lifetext.life == 0)

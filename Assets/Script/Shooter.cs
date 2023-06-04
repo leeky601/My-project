@@ -10,10 +10,13 @@ public class Shooter : MonoBehaviour
 
     private float nextFire = 0f; // 다음 발사 가능 시간
 
+    public AudioClip ATKsoundClip;
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -21,6 +24,8 @@ public class Shooter : MonoBehaviour
     {
         if (Input.GetButton("Fire1") && Time.time > nextFire)
         {
+            audioSource.PlayOneShot(ATKsoundClip);
+
             nextFire = Time.time + fireRate;
 
             // 총알 Prefab 생성
