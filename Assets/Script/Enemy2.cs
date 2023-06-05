@@ -29,6 +29,7 @@ public class Enemy2 : MonoBehaviour
     Vector2 direction;
 
     public AudioClip monsterDieClip;
+    public AudioClip monsterATKClip;
     private AudioSource audioSource;
     // Start is called before the first frame update
 
@@ -60,6 +61,7 @@ public class Enemy2 : MonoBehaviour
 
                 if (attackTimer <= 0)
                 {
+                    audioSource.PlayOneShot(monsterATKClip);
                     // Shoot projectile
                     GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
                     projectile.GetComponent<Rigidbody2D>().AddForce(direction.normalized * 500f);

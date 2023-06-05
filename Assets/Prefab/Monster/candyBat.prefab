@@ -171,6 +171,7 @@ MonoBehaviour:
   player: {fileID: 0}
   itemDropPrefab: {fileID: 7878150698465031301, guid: 960a4ab4fa3fc0b45ad0535f684c14bd, type: 3}
   monsterDieClip: {fileID: 8300000, guid: ef4bf2c5a93c25a4eb0b712476da8c19, type: 3}
+  monsterATKClip: {fileID: 8300000, guid: 3777879fc83ce7a4ead9eadc381cb269, type: 3}
 --- !u!82 &320567293544017961
 AudioSource:
   m_ObjectHideFlags: 0

@@ -295,6 +295,7 @@ public class PlayerMove : MonoBehaviour
         if (!invincible && other.CompareTag("Bullet_E"))
         {
             lifetext.Dead();
+            audioSource.PlayOneShot(hitSoundClip);
             invincible = true;
             Invoke("ResetInvincible", invincibleTime);
             if (lifetext.life == 0)
