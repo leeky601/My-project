@@ -47,4 +47,4 @@ MonoBehaviour:
   itemPrefabs:
   - {fileID: 2476019520442355640, guid: 511f11a721cf5cd4881bc0e5d45d2d61, type: 3}
   - {fileID: 388844877287759830, guid: 520989a491128b9468d2cd95c5024512, type: 3}
-  dropProbability: 1
+  - {fileID: 4944646127772411695, guid: 827fdade53e5a9347891cca69defdb24, type: 3}
