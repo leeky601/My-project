@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerMove : MonoBehaviour
 {
     public float speedBoostAmount = 5.0f; // 이동 속도 증가량
@@ -12,6 +12,10 @@ public class PlayerMove : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb;         // Rigidbody2D 컴포넌트
     private Vector2 moveDirection;  // 이동 방향 벡터
+
+
+    public float delayTime = 2.0f;
+
 
     private Camera mainCamera;
     private Vector3 mousePosition;
@@ -48,7 +52,12 @@ public class PlayerMove : MonoBehaviour
             Character();
         }
 
-
+        if (lifetext.life <= 0)
+        {
+            delayTime -= Time.deltaTime;
+            if (delayTime <= 0)
+            { SceneManager.LoadScene("gameOver"); }
+        }
     }
 
     void FixedUpdate()
@@ -311,7 +320,8 @@ public class PlayerMove : MonoBehaviour
                 animator.SetBool("LeftBackMove", false);
                 animator.SetBool("RightBackMove", false);
                 animator.SetBool("checkDie", true);
-                Destroy(gameObject, 4f);
+                //Destroy(gameObject, 4f);
+                
             }
         }
 
@@ -343,7 +353,8 @@ public class PlayerMove : MonoBehaviour
                 animator.SetBool("LeftBackMove", false);
                 animator.SetBool("RightBackMove", false);
                 animator.SetBool("checkDie", true);
-                Destroy(gameObject, 4f);
+                //Destroy(gameObject, 2f);
+              
             }
         }
     }

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3707836909919947755}
   - component: {fileID: 3707836909919947752}
   - component: {fileID: 3707836909919947753}
-  - component: {fileID: 3707836909919947734}
   - component: {fileID: 3707836909919947757}
   - component: {fileID: 4691317364898755012}
+  - component: {fileID: 8405931063167421488}
   m_Layer: 0
   m_Name: cactus
   m_TagString: Enemy
@@ -136,30 +136,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3707836909919947734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3707836909919947735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da81c7fbd097df2408a9c3ae045baebd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  range: 5
-  attackDelay: 1
-  projectilePrefab: {fileID: 8774724078193203301, guid: b6d86a220fa923b448ac5b8f41fb17dd, type: 3}
-  pushForce: 7000
-  pushForce2: 0.1
-  pushDuration: 0.2
-  pushDuration2: 0.2
-  isPushing: 0
-  player: {fileID: 0}
-  itemDropPrefab: {fileID: 7878150698465031301, guid: 960a4ab4fa3fc0b45ad0535f684c14bd, type: 3}
-  monsterDieClip: {fileID: 8300000, guid: ef4bf2c5a93c25a4eb0b712476da8c19, type: 3}
 --- !u!95 &3707836909919947757
 Animator:
   serializedVersion: 5
@@ -277,3 +253,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8405931063167421488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3707836909919947735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8ca1085c2f0b2947b3f260d243d5df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  range: 5
+  attackDelay: 1
+  projectilePrefab: {fileID: 8774724078193203301, guid: 2d7c564a79748674c9bf9504422653f4, type: 3}
+  pushForce: 7000
+  pushForce2: 0.1
+  pushDuration: 0.2
+  pushDuration2: 0.2
+  isPushing: 0
+  player: {fileID: 0}
+  itemDropPrefab: {fileID: 7878150698465031301, guid: 960a4ab4fa3fc0b45ad0535f684c14bd, type: 3}
+  monsterDieClip: {fileID: 8300000, guid: ef4bf2c5a93c25a4eb0b712476da8c19, type: 3}
+  monsterATKClip: {fileID: 8300000, guid: 3777879fc83ce7a4ead9eadc381cb269, type: 3}
