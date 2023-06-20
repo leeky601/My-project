@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
+    
+
     public int nextSceneNumber; // 다음 씬의 번호를 설정할 변수
 
     // Start is called before the first frame update

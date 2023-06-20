@@ -98,7 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9802485370cd349be26c3968316e2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPrefab: {fileID: 2508009700106435203, guid: e2895c2601584684e8dfda4696066880, type: 3}
+  spawnPrefab: {fileID: 1188947315026536334, guid: e2895c2601584684e8dfda4696066880, type: 3}
+  targetTag: Enemy
 --- !u!58 &1616709429114082961
 CircleCollider2D:
   m_ObjectHideFlags: 0

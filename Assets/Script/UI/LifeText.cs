@@ -6,12 +6,27 @@ using UnityEngine.UI;
 public class LifeText : MonoBehaviour
 {
     // Start is called before the first frame update
+    public static LifeText instance; // 싱글턴 인스턴스 변수
     public Text life_text;
 
     public int life;
+
     void Start()
     {
-        life = 5;
+        
+    }
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            life = 5;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
