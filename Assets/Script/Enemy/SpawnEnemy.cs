@@ -22,6 +22,11 @@ public class SpawnEnemy : MonoBehaviour
 
     void Spawn()
     {
+        if (!gameObject.activeSelf)
+        {
+            return; 
+        }
+
         Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
         Vector3 spawnPos = Vector3.zero;
 

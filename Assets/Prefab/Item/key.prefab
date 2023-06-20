@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4762209934543280134}
   - component: {fileID: 1379859463132063697}
   - component: {fileID: 1616709429114082961}
+  - component: {fileID: 2783188750866670672}
   m_Layer: 0
   m_Name: key
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4944646127772411695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.51, y: -0.3968621, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 337941953
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.6603774, g: 0.14017446, b: 0.14017446, a: 1}
+  m_Sprite: {fileID: 21300000, guid: f660372d3900fcb4b8111ffd2027dc5d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,7 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9802485370cd349be26c3968316e2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPrefab: {fileID: 2508009700106435203, guid: e2895c2601584684e8dfda4696066880, type: 3}
+  spawnPrefab: {fileID: 1188947315026536334, guid: e2895c2601584684e8dfda4696066880, type: 3}
+  targetTag: Enemy
 --- !u!58 &1616709429114082961
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -115,3 +117,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.028714687}
   serializedVersion: 2
   m_Radius: 0.31738135
+--- !u!95 &2783188750866670672
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4944646127772411695}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cc167c47640d50340a2f109100bedff3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

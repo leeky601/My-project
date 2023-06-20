@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: portal
+  m_Name: key
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,11 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 77cc0d2dd6dc4164ea3bdc689044b8ac, type: 3}
-    - time: 0.13333334
-      value: {fileID: 21300000, guid: 1ee1f64e98d41214a94788dcd5e13bc8, type: 3}
-    - time: 0.26666668
-      value: {fileID: 21300000, guid: 77cc0d2dd6dc4164ea3bdc689044b8ac, type: 3}
+      value: {fileID: 21300000, guid: f660372d3900fcb4b8111ffd2027dc5d, type: 3}
+    - time: 0.15
+      value: {fileID: 21300000, guid: 61e01e0967d3c604893ac5602885ed64, type: 3}
+    - time: 0.3
+      value: {fileID: 21300000, guid: f660372d3900fcb4b8111ffd2027dc5d, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,15 +44,15 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 77cc0d2dd6dc4164ea3bdc689044b8ac, type: 3}
-    - {fileID: 21300000, guid: 1ee1f64e98d41214a94788dcd5e13bc8, type: 3}
-    - {fileID: 21300000, guid: 77cc0d2dd6dc4164ea3bdc689044b8ac, type: 3}
+    - {fileID: 21300000, guid: f660372d3900fcb4b8111ffd2027dc5d, type: 3}
+    - {fileID: 21300000, guid: 61e01e0967d3c604893ac5602885ed64, type: 3}
+    - {fileID: 21300000, guid: f660372d3900fcb4b8111ffd2027dc5d, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.28333336
+    m_StopTime: 0.3166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
