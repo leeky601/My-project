@@ -14,16 +14,19 @@ public class BossATK2_Spawner : MonoBehaviour
     Vector2 lookDirection_2;
     Vector2 lookDirection_3;
 
-
+    public AudioClip ATKsoundClip;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        audioSource = GetComponent<AudioSource>();
+
         lookDirection_1 = player.position - transform.position;
         lookDirection_2 = new Vector2(player.position.x - transform.position.x + 2f, player.position.y - transform.position.y + 2f);
         lookDirection_3 = new Vector2(player.position.x - transform.position.x - 2f, player.position.y - transform.position.y - 2f);
 
-        Destroy(gameObject, 5f);  
+        Destroy(gameObject, 7f);  
     }
 
     // Update is called once per frame
@@ -35,6 +38,8 @@ public class BossATK2_Spawner : MonoBehaviour
         // 일정 시간마다 총알을 발사합니다.
         if (Time.time >= nextFireTime)
         {
+            audioSource.PlayOneShot(ATKsoundClip);
+
             // 발사 딜레이 타임을 업데이트합니다.
             nextFireTime = Time.time + fireRate;
 

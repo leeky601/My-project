@@ -10,6 +10,8 @@ TagManager:
   - Wall
   - Heart
   - Item
+  - Bullet_BB
+  - Bullet_BT
   layers:
   - Default
   - TransparentFX

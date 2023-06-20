@@ -23,6 +23,7 @@ public class PlayerMove : MonoBehaviour
 
     public float invincibleTime = 0.5f; // 公利 矫埃
     private bool invincible = false; // 公利 惑怕 咯何
+    private bool btInvincible = false; // 公利 惑怕 咯何
 
     public AudioClip itemSoundClip;
     public AudioClip hitSoundClip;
@@ -57,6 +58,11 @@ public class PlayerMove : MonoBehaviour
             delayTime -= Time.deltaTime;
             if (delayTime <= 0)
             { SceneManager.LoadScene("gameOver"); }
+        }
+
+        if (lifetext.life == 0)
+        {
+            PlayerDie();
         }
     }
 
@@ -269,33 +275,7 @@ public class PlayerMove : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
         moveDirection = new Vector2(moveX, moveY).normalized;
-        /* if (Input.GetKey(KeyCode.A))
-         {
-
-             transform.Translate(Vector3.left * speed * Time.deltaTime);
-         }
-
-         if (Input.GetKey(KeyCode.D))
-         {
-
-             transform.Translate(Vector3.right * speed * Time.deltaTime);
-         }
-
-         if (Input.GetKey(KeyCode.W))
-         {
-
-             transform.Translate(Vector3.up * speed * Time.deltaTime);
-         }
-
-         if (Input.GetKey(KeyCode.S))
-         {
-
-             transform.Translate(Vector3.down * speed * Time.deltaTime);
-         }*/
-
-
-
-
+     
     }
 
 
@@ -307,28 +287,40 @@ public class PlayerMove : MonoBehaviour
             audioSource.PlayOneShot(hitSoundClip);
             invincible = true;
             Invoke("ResetInvincible", invincibleTime);
-            if (lifetext.life == 0)
-            {
-                animator.SetBool("FrontIdle", false);
-                animator.SetBool("LeftIdle", false);
-                animator.SetBool("RightIdle", false);
-                animator.SetBool("BackIdle", false);
-                animator.SetBool("LeftFrontMove", false);
-                animator.SetBool("RightFrontMove", false);
-                animator.SetBool("LeftMove", false);
-                animator.SetBool("RightMove", false);
-                animator.SetBool("LeftBackMove", false);
-                animator.SetBool("RightBackMove", false);
-                animator.SetBool("checkDie", true);
-                //Destroy(gameObject, 4f);
-                
-            }
+           
         }
+
+       
 
         if (other.CompareTag("Item"))
         {
             audioSource.clip = itemSoundClip;
             audioSource.Play();
+        }
+    }
+
+
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (!invincible && other.CompareTag("Bullet_BB"))
+        {
+            lifetext.Dead();
+            audioSource.PlayOneShot(hitSoundClip);
+            invincible = true;
+            Invoke("ResetInvincible", 0.65f);
+        }
+
+        if (!btInvincible && other.CompareTag("Bullet_BT") )
+        {
+            float distance = Vector3.Distance(transform.position, other.transform.position);
+            if (distance <= 0.5f)
+            {
+                lifetext.Dead();
+                audioSource.PlayOneShot(hitSoundClip);
+                btInvincible = true;
+                Invoke("ResetTonadoInvincible", 5.0f);
+            }
         }
     }
 
@@ -340,27 +332,17 @@ public class PlayerMove : MonoBehaviour
             audioSource.PlayOneShot(hitSoundClip);
             invincible = true;
             Invoke("ResetInvincible", invincibleTime);
-            if (lifetext.life == 0)
-            {
-                animator.SetBool("FrontIdle", false);
-                animator.SetBool("LeftIdle", false);
-                animator.SetBool("RightIdle", false);
-                animator.SetBool("BackIdle", false);
-                animator.SetBool("LeftFrontMove", false);
-                animator.SetBool("RightFrontMove", false);
-                animator.SetBool("LeftMove", false);
-                animator.SetBool("RightMove", false);
-                animator.SetBool("LeftBackMove", false);
-                animator.SetBool("RightBackMove", false);
-                animator.SetBool("checkDie", true);
-                //Destroy(gameObject, 2f);
-              
-            }
+     
         }
     }
     void ResetInvincible()
     {
         invincible = false;
+    }
+
+    void ResetTonadoInvincible()
+    {
+        btInvincible = false;
     }
 
     public void StartSpeedBoost()
@@ -393,6 +375,20 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+    private void PlayerDie()
+    {
+        animator.SetBool("FrontIdle", false);
+        animator.SetBool("LeftIdle", false);
+        animator.SetBool("RightIdle", false);
+        animator.SetBool("BackIdle", false);
+        animator.SetBool("LeftFrontMove", false);
+        animator.SetBool("RightFrontMove", false);
+        animator.SetBool("LeftMove", false);
+        animator.SetBool("RightMove", false);
+        animator.SetBool("LeftBackMove", false);
+        animator.SetBool("RightBackMove", false);
+        animator.SetBool("checkDie", true);
+    }
   
 }
 

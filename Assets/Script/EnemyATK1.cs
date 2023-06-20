@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyATK1 : MonoBehaviour
+public class BossBigger : MonoBehaviour
 {
     public Transform player; // 플레이어 객체
     public float speed = 5f; // 이동 속도
@@ -19,7 +19,7 @@ public class EnemyATK1 : MonoBehaviour
     {
         transform.position = Vector3.Lerp(transform.position, player.position, speed * Time.deltaTime);
         transform.localScale += new Vector3(scaleSpeed, scaleSpeed, 0f) * Time.deltaTime;
-        Destroy(gameObject, 3.0f);
+        Destroy(gameObject, 2.0f);
 
     }
 }
