@@ -15,6 +15,9 @@ public class BossLaser : MonoBehaviour
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         InvokeRepeating("SpawnSphere", 0f, spawnInterval);
+        InvokeRepeating("SpawnSphere", 0f, spawnInterval);
+        InvokeRepeating("SpawnSphere", 0f, spawnInterval);
+        InvokeRepeating("SpawnSphere", 0f, spawnInterval);
     }
 
     // Update is called once per frame

@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
+    public GameObject[] objectsToActivate; // 활성화할 오브젝트 배열
+    public float minTime = 10f; // 최소 시간 간격
+    
 
-    public GameObject[] enemyPrefabs; // 소환할 잡몹 프리팹들
-    public float spawnInterval = 5f; // 소환 간격 (초)
-    public float spawnRadius = 5f; // 소환 위치 반경
-    public GameObject spherePrefab; // 소환할 구체 프리팹
+    private Coroutine activationCoroutine;
+    private List<GameObject> activatedObjects = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(SpawnEnemies());
-        StartCoroutine(SpawnSphere());
+        // 시작할 때 모든 오브젝트를 비활성화합니다.
+        foreach (GameObject obj in objectsToActivate)
+        {
+            obj.SetActive(false);
+        }
+
+        // 랜덤한 시간 간격으로 오브젝트 활성화 코루틴을 시작합니다.
+        StartActivationCoroutine();
+
     }
 
     // Update is called once per frame
@@ -23,41 +31,55 @@ public class Boss : MonoBehaviour
 
     }
 
-    private IEnumerator SpawnEnemies()
+    private void StartActivationCoroutine()
     {
-        while (true)
+        // 랜덤한 시간 간격을 계산합니다.
+        
+
+        // 이전에 실행 중인 코루틴이 있다면 중지합니다.
+        if (activationCoroutine != null)
         {
-            yield return new WaitForSeconds(spawnInterval);
-
-            // 랜덤으로 잡몹 프리팹 선택
-            int randomIndex = Random.Range(0, enemyPrefabs.Length);
-            GameObject enemyPrefab = enemyPrefabs[randomIndex];
-
-            // 주변 랜덤 위치 계산
-            Vector2 bossPosition = transform.position;
-            Vector2 randomOffset = Random.insideUnitCircle * spawnRadius;
-            Vector2 spawnPosition = bossPosition + randomOffset;
-
-            // 잡몹 생성
-            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            StopCoroutine(activationCoroutine);
         }
+
+        // 지정된 시간 간격 후에 오브젝트 활성화 코루틴을 시작합니다.
+        activationCoroutine = StartCoroutine(ActivateObjectAfterDelay(minTime));
     }
 
-    private IEnumerator SpawnSphere()
+    private IEnumerator ActivateObjectAfterDelay(float delay)
     {
-        while (true)
+        yield return new WaitForSeconds(delay);
+
+        // 활성화되지 않은 오브젝트를 필터링합니다.
+        List<GameObject> inactiveObjects = new List<GameObject>();
+        foreach (GameObject obj in objectsToActivate)
         {
-            yield return new WaitForSeconds(spawnInterval);
-
-            
-
-            // 주변 랜덤 위치 계산
-            Vector2 bossPosition = transform.position;
-            Vector2 randomOffset = Random.insideUnitCircle * spawnRadius;
-            Vector2 spawnPosition = bossPosition + randomOffset;
-
-            // 잡몹 생성
-            Instantiate(spherePrefab, spawnPosition, Quaternion.identity);
+            if (!obj.activeSelf && !activatedObjects.Contains(obj))
+            {
+                inactiveObjects.Add(obj);
+            }
         }
+
+        // 활성화되지 않은 오브젝트가 없으면 모든 오브젝트를 다시 초기화하고 코루틴을 재시작합니다.
+        if (inactiveObjects.Count == 0)
+        {
+            foreach (GameObject obj in objectsToActivate)
+            {
+                obj.SetActive(false);
+            }
+            activatedObjects.Clear();
+            StartActivationCoroutine();
+            yield break;
+        }
+
+        // 활성화되지 않은 오브젝트 중에서 랜덤하게 오브젝트를 선택하여 활성화합니다.
+        int randomIndex = Random.Range(0, inactiveObjects.Count);
+        GameObject selectedObject = inactiveObjects[randomIndex];
+        selectedObject.SetActive(true);
+        activatedObjects.Add(selectedObject);
+
+        // 다음 오브젝트가 활성화될 때 이전 오브젝트를 비활성화하도록 코루틴을 재시작합니다.
+        StartActivationCoroutine();
     }
+
 }
