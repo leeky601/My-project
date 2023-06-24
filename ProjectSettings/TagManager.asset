@@ -13,6 +13,7 @@ TagManager:
   - Bullet_BB
   - Bullet_BT
   - Boss
+  - Pattern
   layers:
   - Default
   - TransparentFX

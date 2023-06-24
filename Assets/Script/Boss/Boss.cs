@@ -5,8 +5,7 @@ using UnityEngine.UI;
 public class Boss : MonoBehaviour
 {
     public GameObject[] objectsToActivate; // 활성화할 오브젝트 배열
-    public float minDelay = 5f; // 최소 대기 시간
-    public float maxDelay = 10f; // 최대 대기 시간
+    public GameObject Tornado;
 
     private Coroutine activationCoroutine;
     private GameObject previousObject;
@@ -20,10 +19,13 @@ public class Boss : MonoBehaviour
     private float playerPositionX;
     private int maxHp;
     private int hp;
+
+    private bool paze = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        maxHp = 150;
+        maxHp = 20;
         hp = maxHp;
         animator = GetComponent<Animator>();
 
@@ -45,12 +47,20 @@ public class Boss : MonoBehaviour
         healthSlider.value = (float)hp / maxHp;
         playerPositionX = playerTransform.position.x;
         bossPositionX = transform.position.x;
+
+        if (hp < 10)
+        {
+            paze = true;
+            animator.SetBool("change", true);
+            StartCoroutine(SetBoolAfterDelaychange(2f));
+            Tornado.SetActive(true);
+        }
     }
 
     private void StartActivationCoroutine()
     {
         // 랜덤한 대기 시간을 계산합니다.
-        float randomDelay = Random.Range(minDelay, maxDelay);
+        
 
         // 이전에 실행 중인 코루틴이 있다면 중지합니다.
         if (activationCoroutine != null)
@@ -71,11 +81,10 @@ public class Boss : MonoBehaviour
         if (selectedObject != null)
         {
             selectedObject.SetActive(true);
-
+            
             animator.SetBool("Pattern", true);
-
             StartCoroutine(SetBoolAfterDelay(2f));
-
+                    
             // 이전 오브젝트가 있다면 비활성화합니다.
             if (previousObject != null)
             {
@@ -136,8 +145,14 @@ public class Boss : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-
         animator.SetBool("rightkick", false);
+    }
+
+    IEnumerator SetBoolAfterDelaychange(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        animator.SetBool("change", false);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -153,7 +168,6 @@ public class Boss : MonoBehaviour
             animator.SetBool("rightkick", true);
             StartCoroutine(SetBoolAfterDelayRkick(1f));
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

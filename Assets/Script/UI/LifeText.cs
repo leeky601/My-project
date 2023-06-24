@@ -13,7 +13,7 @@ public class LifeText : MonoBehaviour
 
     void Start()
     {
-        life = 100;
+        life = 5;
     }
     
 

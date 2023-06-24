@@ -42,6 +42,7 @@ public class PortalKey : MonoBehaviour
             Destroy(obj);
         }
     }
+
     private void SpawnPrefabInCenter()
     {
         Vector3 spawnPosition = new Vector3(0f, 0f, 0f); // 맵 중앙 위치로 수정해주세요.
