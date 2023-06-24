@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Boss : MonoBehaviour
 {
     public GameObject[] objectsToActivate; // 활성화할 오브젝트 배열
@@ -10,16 +10,21 @@ public class Boss : MonoBehaviour
 
     private Coroutine activationCoroutine;
     private GameObject previousObject;
-
+    public Slider healthSlider;
+    
     private Animator animator;
 
     private Transform playerTransform; // 플레이어의 위치
 
     private float bossPositionX;
     private float playerPositionX;
+    private int maxHp;
+    private int hp;
     // Start is called before the first frame update
     void Start()
-    {  
+    {
+        maxHp = 150;
+        hp = maxHp;
         animator = GetComponent<Animator>();
 
         // 모든 오브젝트를 비활성화합니다.
@@ -37,7 +42,7 @@ public class Boss : MonoBehaviour
     void Update()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-
+        healthSlider.value = (float)hp / maxHp;
         playerPositionX = playerTransform.position.x;
         bossPositionX = transform.position.x;
     }
@@ -149,6 +154,15 @@ public class Boss : MonoBehaviour
             StartCoroutine(SetBoolAfterDelayRkick(1f));
         }
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet_P"))
+        {
+            hp -= 1;
+            Debug.Log(hp);
+        }
     }
 
 }

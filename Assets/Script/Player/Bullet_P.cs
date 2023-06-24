@@ -22,5 +22,10 @@ public class Bullet_P : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
