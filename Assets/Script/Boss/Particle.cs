@@ -6,9 +6,13 @@ public class Particle : MonoBehaviour
 {
     public float delay = 2f;
     public GameObject candyPrefab;
+
+    public AudioClip crunchsoundClip;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         Invoke("SpawnPrefab", delay);
     }
 
@@ -20,6 +24,7 @@ public class Particle : MonoBehaviour
 
     private void SpawnPrefab()
     {
+        audioSource.PlayOneShot(crunchsoundClip);
         Instantiate(candyPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

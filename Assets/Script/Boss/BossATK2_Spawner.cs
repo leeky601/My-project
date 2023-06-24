@@ -25,8 +25,7 @@ public class BossATK2_Spawner : MonoBehaviour
         lookDirection_1 = player.position - transform.position;
         lookDirection_2 = new Vector2(player.position.x - transform.position.x + 2f, player.position.y - transform.position.y + 2f);
         lookDirection_3 = new Vector2(player.position.x - transform.position.x - 2f, player.position.y - transform.position.y - 2f);
-
-        Destroy(gameObject, 7f);  
+        
     }
 
     // Update is called once per frame

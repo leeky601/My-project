@@ -5,14 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
-    
+    public AudioClip PortalsoundClip;
+    private AudioSource audioSource;
 
     public int nextSceneNumber; // 다음 씬의 번호를 설정할 변수
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(PortalsoundClip);
     }
 
     // Update is called once per frame

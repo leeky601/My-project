@@ -13,21 +13,9 @@ public class LifeText : MonoBehaviour
 
     void Start()
     {
-        
+        life = 100;
     }
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-            life = 5;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    
 
     // Update is called once per frame
     void Update()

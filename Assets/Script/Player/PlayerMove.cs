@@ -24,6 +24,7 @@ public class PlayerMove : MonoBehaviour
     public float invincibleTime = 0.5f; // 무적 시간
     private bool invincible = false; // 무적 상태 여부
     private bool btInvincible = false; // 무적 상태 여부
+    
 
     public AudioClip itemSoundClip;
     public AudioClip hitSoundClip;
@@ -41,6 +42,7 @@ public class PlayerMove : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         lifetext = GameObject.Find("LifeText").GetComponent<LifeText>();
+
     }
 
     // Update is called once per frame
@@ -333,6 +335,21 @@ public class PlayerMove : MonoBehaviour
             invincible = true;
             Invoke("ResetInvincible", invincibleTime);
      
+        }
+
+        if (!invincible && other.gameObject.CompareTag("Boss"))
+        {
+            lifetext.Dead();
+            audioSource.PlayOneShot(hitSoundClip);
+            invincible = true;
+            Invoke("ResetInvincible", invincibleTime);
+
+
+            //Vector2 knockbackDirection = transform.position - other.transform.position;
+            //knockbackDirection = knockbackDirection.normalized;
+            //float knockbackForce = 10.0f; // 조정 가능한 넉백 힘
+
+            //GetComponent<Rigidbody2D>().AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
         }
     }
     void ResetInvincible()

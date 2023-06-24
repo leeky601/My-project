@@ -11,9 +11,17 @@ public class Boss : MonoBehaviour
     private Coroutine activationCoroutine;
     private GameObject previousObject;
 
+    private Animator animator;
+
+    private Transform playerTransform; // 플레이어의 위치
+
+    private float bossPositionX;
+    private float playerPositionX;
     // Start is called before the first frame update
     void Start()
-    {
+    {  
+        animator = GetComponent<Animator>();
+
         // 모든 오브젝트를 비활성화합니다.
         foreach (GameObject obj in objectsToActivate)
         {
@@ -28,7 +36,10 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
+        playerPositionX = playerTransform.position.x;
+        bossPositionX = transform.position.x;
     }
 
     private void StartActivationCoroutine()
@@ -43,7 +54,7 @@ public class Boss : MonoBehaviour
         }
 
         // 지정된 대기 시간 후에 오브젝트 활성화 코루틴을 시작합니다.
-        activationCoroutine = StartCoroutine(ActivateRandomObjectAfterDelay(randomDelay));
+        activationCoroutine = StartCoroutine(ActivateRandomObjectAfterDelay(10.0f));
     }
 
     private IEnumerator ActivateRandomObjectAfterDelay(float delay)
@@ -56,6 +67,10 @@ public class Boss : MonoBehaviour
         {
             selectedObject.SetActive(true);
 
+            animator.SetBool("Pattern", true);
+
+            StartCoroutine(SetBoolAfterDelay(2f));
+
             // 이전 오브젝트가 있다면 비활성화합니다.
             if (previousObject != null)
             {
@@ -64,6 +79,7 @@ public class Boss : MonoBehaviour
 
             // 현재 오브젝트를 이전 오브젝트로 설정합니다.
             previousObject = selectedObject;
+           
         }
 
         // 다음 오브젝트가 활성화될 때 이전 오브젝트를 비활성화하도록 코루틴을 재시작합니다.
@@ -94,6 +110,45 @@ public class Boss : MonoBehaviour
         }
 
         return null;
+    }
+    IEnumerator SetBoolAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // delay 후에 값을 false로 변경
+        animator.SetBool("Pattern", false);
+    }
+
+    IEnumerator SetBoolAfterDelayLkick(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        
+        animator.SetBool("leftkick", false);
+    }
+
+    IEnumerator SetBoolAfterDelayRkick(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+
+        animator.SetBool("rightkick", false);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (playerPositionX <= bossPositionX && other.gameObject.CompareTag("Player"))
+        {
+            animator.SetBool("leftkick", true);
+            StartCoroutine(SetBoolAfterDelayLkick(1f));
+        }
+
+        if (playerPositionX > bossPositionX && other.gameObject.CompareTag("Player"))
+        {
+            animator.SetBool("rightkick", true);
+            StartCoroutine(SetBoolAfterDelayRkick(1f));
+        }
+
     }
 
 }

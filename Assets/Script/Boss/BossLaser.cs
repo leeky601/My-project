@@ -10,21 +10,32 @@ public class BossLaser : MonoBehaviour
     public float laserDelay = 2f; // 구체 생성 후 레이저 발사까지의 시간 지연
 
     private Transform playerTransform; // 플레이어의 위치
+
+   
+    public AudioClip AtksoundClip;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        InvokeRepeating("SpawnSphere", 0f, spawnInterval);
-        InvokeRepeating("SpawnSphere", 0f, spawnInterval);
-        InvokeRepeating("SpawnSphere", 0f, spawnInterval);
-        InvokeRepeating("SpawnSphere", 0f, spawnInterval);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
+    void SpawnSpheres()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            SpawnSphere();
+        }
+        audioSource.PlayOneShot(AtksoundClip);
+    }
+
     void SpawnSphere()
     {
         // 보스 주변 랜덤한 위치 계산
@@ -33,6 +44,7 @@ public class BossLaser : MonoBehaviour
         // 구체 생성 및 위치 이동
         GameObject sphere = Instantiate(spherePrefab, randomPosition, Quaternion.identity);
         sphere.GetComponent<SphereController>().SetTimerAndPlayerTransform(laserDelay, playerTransform);
+        
     }
 
     Vector3 CalculateRandomPosition()
@@ -50,4 +62,15 @@ public class BossLaser : MonoBehaviour
 
         return randomPosition;
     }
+    void OnDisable()
+    {
+        CancelInvoke("SpawnSpheres");
+    }
+
+    void OnEnable()
+    {
+        
+        InvokeRepeating("SpawnSpheres", 0f, spawnInterval);
+    }
 }
+
