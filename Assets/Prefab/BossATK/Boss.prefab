@@ -98,12 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ebe81130bde7641adf10339552d075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 1187055501255552258, guid: 8879f844eab3b3749a736b39178dbd36, type: 3}
-  - {fileID: 4382645058428484102, guid: 30ea5d51f39a1f747bc0571487e04859, type: 3}
-  spawnInterval: 2
-  spawnRadius: 5
-  spherePrefab: {fileID: 2085714046018621676, guid: d2b8124cae6f24644b94442d91cbd872, type: 3}
+  objectsToActivate:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  minDelay: 5
+  maxDelay: 10
 --- !u!95 &-4831631685250715331
 Animator:
   serializedVersion: 5

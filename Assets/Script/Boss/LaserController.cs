@@ -17,6 +17,7 @@ public class LaserController : MonoBehaviour
     void Update()
     {
         transform.position += direction * speed * Time.deltaTime;
+        
     }
 
     public void SetDirection(Vector3 dir)
