@@ -13,13 +13,14 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb;         // Rigidbody2D 컴포넌트
     private Vector2 moveDirection;  // 이동 방향 벡터
 
-
+    
     public float delayTime = 2.0f;
 
 
     private Camera mainCamera;
     private Vector3 mousePosition;
     private LifeText lifetext;
+    public GameObject shooter;
 
     public float invincibleTime = 0.5f; // 무적 시간
     private bool invincible = false; // 무적 상태 여부
@@ -50,7 +51,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (animator.GetBool("checkDie") == false)
+        if (lifetext.life > 0)
         {
             mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             Move();
@@ -66,6 +67,7 @@ public class PlayerMove : MonoBehaviour
 
         if (lifetext.life == 0)
         {
+           
             PlayerDie();
         }
     }
@@ -294,7 +296,14 @@ public class PlayerMove : MonoBehaviour
            
         }
 
-       
+        if (!invincible && other.CompareTag("Kick"))
+        {
+            lifetext.Dead();
+            audioSource.PlayOneShot(hitSoundClip);
+            invincible = true;
+            Invoke("ResetInvincible", invincibleTime);
+
+        }
 
         if (other.CompareTag("Item"))
         {
@@ -339,20 +348,8 @@ public class PlayerMove : MonoBehaviour
      
         }
 
-        if (!invincible && other.gameObject.CompareTag("Boss"))
-        {
-            lifetext.Dead();
-            audioSource.PlayOneShot(hitSoundClip);
-            invincible = true;
-            Invoke("ResetInvincible", invincibleTime);
-
-
-            //Vector2 knockbackDirection = transform.position - other.transform.position;
-            //knockbackDirection = knockbackDirection.normalized;
-            //float knockbackForce = 10.0f; // 조정 가능한 넉백 힘
-
-            //GetComponent<Rigidbody2D>().AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
-        }
+ 
+        
     }
     void ResetInvincible()
     {
@@ -407,7 +404,7 @@ public class PlayerMove : MonoBehaviour
         animator.SetBool("LeftBackMove", false);
         animator.SetBool("RightBackMove", false);
         animator.SetBool("checkDie", true);
-
+       
         DestroyObjectsWithTag();          
     }
 

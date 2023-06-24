@@ -14,6 +14,7 @@ TagManager:
   - Bullet_BT
   - Boss
   - Pattern
+  - Kick
   layers:
   - Default
   - TransparentFX

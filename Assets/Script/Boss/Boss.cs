@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class Boss : MonoBehaviour
 {
@@ -10,6 +12,9 @@ public class Boss : MonoBehaviour
     private Coroutine activationCoroutine;
     private GameObject previousObject;
     public Slider healthSlider;
+
+    public GameObject LeftKick;
+    public GameObject RightKick;
     
     private Animator animator;
 
@@ -20,14 +25,20 @@ public class Boss : MonoBehaviour
     private int maxHp;
     private int hp;
 
+    public SceneAsset yourScene;
+
     private bool paze = false;
 
+    public AudioClip soundClip;
+    public AudioClip soundClip2;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
         maxHp = 20;
         hp = maxHp;
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         // 모든 오브젝트를 비활성화합니다.
         foreach (GameObject obj in objectsToActivate)
@@ -37,24 +48,45 @@ public class Boss : MonoBehaviour
 
         // 랜덤한 시간 간격으로 오브젝트 활성화 코루틴을 시작합니다.
         StartActivationCoroutine();
-
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+       
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         healthSlider.value = (float)hp / maxHp;
         playerPositionX = playerTransform.position.x;
         bossPositionX = transform.position.x;
-
+        if (hp >= 10)
+        {
+            if (audioSource.clip != soundClip)
+            { audioSource.clip = soundClip;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
+        }
         if (hp < 10)
         {
             paze = true;
             animator.SetBool("change", true);
             StartCoroutine(SetBoolAfterDelaychange(2f));
             Tornado.SetActive(true);
+            if (audioSource.clip != soundClip2)
+            { audioSource.clip = soundClip2;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
         }
+
+        if (hp <= 0)
+        {
+            SceneManager.LoadScene(yourScene.name);
+        }
+
+       
+       
     }
 
     private void StartActivationCoroutine()
@@ -137,6 +169,7 @@ public class Boss : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
+       
         
         animator.SetBool("leftkick", false);
     }
@@ -145,6 +178,7 @@ public class Boss : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
+      
         animator.SetBool("rightkick", false);
     }
 
@@ -177,6 +211,26 @@ public class Boss : MonoBehaviour
             hp -= 1;
             Debug.Log(hp);
         }
+    }
+
+    public void SetActiveLKick()
+    {
+        LeftKick.SetActive(true);
+    }
+
+    public void SetActiveLKickFalse()
+    {
+        LeftKick.SetActive(false);
+    }
+
+    public void SetActiveRKick()
+    {
+       RightKick.SetActive(true);
+    }
+
+    public void SetActiveRKickFalse()
+    {
+        RightKick.SetActive(false);
     }
 
 }
