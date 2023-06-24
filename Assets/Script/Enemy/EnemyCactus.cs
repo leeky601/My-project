@@ -8,7 +8,9 @@ public class EnemyCactus : MonoBehaviour
 
     public float range = 5f;
     public float attackDelay = 1f;
-    public GameObject projectilePrefab;
+    
+    public GameObject bulletPrefab;
+    public GameObject bulletPrefab2;
 
 
     public float pushForce = 0.5f;
@@ -65,10 +67,22 @@ public class EnemyCactus : MonoBehaviour
                     Vector2 directionOffset = Quaternion.Euler(0f, 0f, 30f) * direction.normalized;
                     Vector2 directionOffset2 = Quaternion.Euler(0f, 0f, -30f) * direction.normalized;
                     // Shoot projectile
-                    GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-                    projectile.GetComponent<Rigidbody2D>().AddForce(directionOffset.normalized * 500f);
-                    GameObject projectile2 = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-                    projectile2.GetComponent<Rigidbody2D>().AddForce(directionOffset2.normalized * 500f);
+                    direction = player.position - transform.position;
+                    direction.y = 0;
+                    if (direction.x > 0)
+                    {
+                        GameObject projectile = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+                        projectile.GetComponent<Rigidbody2D>().AddForce(directionOffset.normalized * 500f);
+                        GameObject projectile2 = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+                        projectile2.GetComponent<Rigidbody2D>().AddForce(directionOffset2.normalized * 500f);
+                    }
+                    else
+                    {
+                        GameObject projectile = Instantiate(bulletPrefab2, transform.position, Quaternion.identity);
+                        projectile.GetComponent<Rigidbody2D>().AddForce(directionOffset.normalized * 500f);
+                        GameObject projectile2 = Instantiate(bulletPrefab2, transform.position, Quaternion.identity);
+                        projectile2.GetComponent<Rigidbody2D>().AddForce(directionOffset2.normalized * 500f);
+                    }
                     attackTimer = attackDelay;
                 }
                 else

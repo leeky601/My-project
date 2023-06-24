@@ -32,7 +32,7 @@ public class LifeText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        life_text.text = life.ToString();
+        //life_text.text = life.ToString();
     }
 
     public void Dead()

@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dbfbab01ef13a449e453b3bd344e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yourScene: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
+  yourScene: {fileID: 102900000, guid: d0ce54e76f4a4d040b4a1d3bd6764250, type: 3}
 --- !u!114 &1339159830
 MonoBehaviour:
   m_ObjectHideFlags: 0
