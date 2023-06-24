@@ -22,9 +22,7 @@ public class BossATK2_Spawner : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         audioSource = GetComponent<AudioSource>();
 
-        lookDirection_1 = player.position - transform.position;
-        lookDirection_2 = new Vector2(player.position.x - transform.position.x + 2f, player.position.y - transform.position.y + 2f);
-        lookDirection_3 = new Vector2(player.position.x - transform.position.x - 2f, player.position.y - transform.position.y - 2f);
+        
         
     }
 
@@ -32,7 +30,9 @@ public class BossATK2_Spawner : MonoBehaviour
     void Update()
     {
         //Vector2 lookDirection = player.position - transform.position;
-        
+        lookDirection_1 = player.position - transform.position;
+        lookDirection_2 = new Vector2(player.position.x - transform.position.x + 2f, player.position.y - transform.position.y + 2f);
+        lookDirection_3 = new Vector2(player.position.x - transform.position.x - 2f, player.position.y - transform.position.y - 2f);
 
         // 일정 시간마다 총알을 발사합니다.
         if (Time.time >= nextFireTime)

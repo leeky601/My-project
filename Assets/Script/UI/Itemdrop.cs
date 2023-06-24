@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Itemdrop : MonoBehaviour
 {
@@ -11,9 +12,10 @@ public class Itemdrop : MonoBehaviour
     {
         float rd; 
         rd = Random.value;
+        
         if (rd <= dropProbability)
         {
-            if (rd < 0.5f)
+            if (rd < 0.5f && SceneManager.GetActiveScene().name != "Boss")
             {
                 GameObject item = Instantiate(itemPrefabs[2], transform.position, Quaternion.identity);
             }
