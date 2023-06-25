@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
-    public GameObject[] enemyPrefabs; // 적 프리팹
-    public float spawnDelay = 0f; // 최초 생성 딜레이
-    public float spawnInterval = 5f; // 생성 주기
-    public float minDistanceToPlayer = 10f; // 플레이어와의 최소 거리
-    public GameObject spawnAreaObject; // 생성 영역 오브젝트
-    private Rect spawnArea; // 생성 영역
+    public GameObject[] enemyPrefabs; 
+    public float spawnDelay = 0f; 
+    public float spawnInterval = 5f; 
+    public float minDistanceToPlayer = 10f; 
+    public GameObject spawnAreaObject; 
+    private Rect spawnArea; 
 
    
     void Start()
     {
-        Vector3 position = spawnAreaObject.transform.position;
-        Vector3 scale = spawnAreaObject.transform.localScale;
-        spawnArea = new Rect(position.x - scale.x / 2f, position.z - scale.z / 2f, scale.x, scale.z);
-        InvokeRepeating("Spawn", spawnDelay, spawnInterval);
+        Vector3 position = spawnAreaObject.transform.position; //소환 위치
+        Vector3 scale = spawnAreaObject.transform.localScale; //소환 범위
+        spawnArea = new Rect(position.x - scale.x / 2f, position.z - scale.z / 2f, scale.x, scale.z); //소환 범위 지정
+        InvokeRepeating("Spawn", spawnDelay, spawnInterval); //일정 간격으로 소환
     }
 
     void Spawn()
@@ -30,12 +30,12 @@ public class SpawnEnemy : MonoBehaviour
         Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
         Vector3 spawnPos = Vector3.zero;
 
-        // 생성 영역에서 랜덤한 위치를 구합니다
+        // 소환 영역안에서 랜덤 위치 구함
         float x = Random.Range(spawnArea.xMin, spawnArea.xMax);
         float z = Random.Range(spawnArea.yMin, spawnArea.yMax);
-        spawnPos = new Vector3(x, 0f, z);
+        spawnPos = new Vector3(x, 0f, z);  
 
-        // 생성된 위치가 플레이어와의 최소 거리 이상인지 확인합니다
+        // 플레이어와 최소 거리 유지
         while (Vector3.Distance(spawnPos, playerPos) < minDistanceToPlayer)
         {
             x = Random.Range(spawnArea.xMin, spawnArea.xMax);
@@ -43,8 +43,8 @@ public class SpawnEnemy : MonoBehaviour
             spawnPos = new Vector3(x, 0f, z);
         }
 
-        GameObject randomEnemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
-        Instantiate(randomEnemyPrefab, spawnPos, Quaternion.identity);
+        GameObject randomEnemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)]; //랜덤 적 지정
+        Instantiate(randomEnemyPrefab, spawnPos, Quaternion.identity); //랜덤 적 소환
 
     }
 

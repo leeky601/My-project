@@ -51,15 +51,16 @@ public class Enemy : MonoBehaviour
 
     void Move()
     {
-        if (isPushing == false)
+        if (isPushing == false) //플레이어와 충돌 확인
         {
             Vector2 direction = player.position - transform.position;
             transform.Translate(direction.normalized * speed * Time.deltaTime);
+            //플레이어에게 다가감
 
         }
    }
 
-    void LookAt()
+    void LookAt() //애니메이션
     {
         Vector2 direction = player.position - transform.position;
         direction.y = 0;
@@ -78,36 +79,36 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")) //플레이어와 충돌 시
         {
-            isPushing = true;
+            isPushing = true; 
             if (pushDuration > 0f)
             {
-                Vector2 pushDirection = transform.position - collision.gameObject.transform.position;
-                StartCoroutine(AddForceCoroutine(rb, pushDirection.normalized)); // 밀어내는 코루틴 시작
+                Vector2 pushDirection = transform.position - collision.gameObject.transform.position; //플레이어 충돌 방향 구함.
+                StartCoroutine(AddForceCoroutine(rb, pushDirection.normalized)); //충돌 시 밀어냄
             }
         }
-        else if (collision.gameObject.CompareTag("Enemy"))
+        else if (collision.gameObject.CompareTag("Enemy")) //적과 충돌 시
         {
             isPushing = true;
             if (pushDuration > 0f)
             {
-                Vector2 pushDirection = transform.position - collision.gameObject.transform.position;
-                StartCoroutine(AddForceCoroutine2(rb, pushDirection.normalized)); // 밀어내는 코루틴 시작
+                Vector2 pushDirection = transform.position - collision.gameObject.transform.position; //적끼리 충돌 방향 구함
+                StartCoroutine(AddForceCoroutine2(rb, pushDirection.normalized)); //충돌 시 밀어냄
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet_P"))
+        if (collision.gameObject.CompareTag("Bullet_P")) //플레이어 총알과 충돌 시
         {
             hp -= 1;
-            if (hp == 0)
+            if (hp == 0) //죽으면
             {
-                Instantiate(itemDropPrefab, transform.position, Quaternion.identity);
+                Instantiate(itemDropPrefab, transform.position, Quaternion.identity); //아이템 드랍
                 animator.SetBool("checkDie", true);
-                audioSource.clip = monsterDieClip;
+                audioSource.clip = monsterDieClip; //죽는 소리
                 audioSource.Play();
                 Destroy(gameObject,0.15f);
             }
@@ -117,18 +118,18 @@ public class Enemy : MonoBehaviour
     IEnumerator AddForceCoroutine(Rigidbody2D enemyRb, Vector2 pushDirection)
     {
         isPushing = true;
-        enemyRb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse); // 적을 밀어냅니다.
+        enemyRb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse); // 자신을 밀어냄
         yield return new WaitForSeconds(pushDuration); // 일정 시간 대기
-        enemyRb.velocity = Vector2.zero; // 적의 속도 초기화
+        enemyRb.velocity = Vector2.zero; //자신의 속도 초기화
         isPushing = false;
     }
 
     IEnumerator AddForceCoroutine2(Rigidbody2D enemyRb, Vector2 pushDirection)
     {
         isPushing = true;
-        enemyRb.AddForce(pushDirection * pushForce2, ForceMode2D.Impulse); // 적을 밀어냅니다.
+        enemyRb.AddForce(pushDirection * pushForce2, ForceMode2D.Impulse); // 자신을 밀어냄
         yield return new WaitForSeconds(pushDuration2); // 일정 시간 대기
-        enemyRb.velocity = Vector2.zero; // 적의 속도 초기화
+        enemyRb.velocity = Vector2.zero; //자신의 속도 초기화
         isPushing = false;
     }
 }

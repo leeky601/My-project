@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BossBiggerAtk : MonoBehaviour
 {
-    public Transform player; // 플레이어 객체
-    public float speed = 5f; // 이동 속도
-    public float scaleSpeed = 0.1f; // 크기 변화 속도
+    public Transform player; 
+    public float speed = 5f; 
+    public float scaleSpeed = 0.1f; 
     private CircleCollider2D circleCollider;
-    private float initialRadius; // 초기 반지름
+    private float initialRadius; 
 
     public AudioClip ATKsoundClip;
     private AudioSource audioSource;
@@ -21,17 +21,17 @@ public class BossBiggerAtk : MonoBehaviour
         audioSource.PlayOneShot(ATKsoundClip);
 
 
-        initialRadius = circleCollider.radius; // 초기 반지름 저장
+        initialRadius = circleCollider.radius; //원 크기 저장
     }
 
     private void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, player.position, speed * Time.deltaTime);
-        transform.localScale += new Vector3(scaleSpeed, scaleSpeed, 0f) * Time.deltaTime;
+        transform.position = Vector3.Lerp(transform.position, player.position, speed * Time.deltaTime); //플레이어 추적
+        transform.localScale += new Vector3(scaleSpeed, scaleSpeed, 0f) * Time.deltaTime; //크기 증가
 
-        // 스케일에 따라 CircleCollider2D의 반지름 조정
-        float scaleFactor = transform.localScale.x; // x축 스케일을 기준으로 가정
-        circleCollider.radius = initialRadius * scaleFactor * 1.5f; // 초기 반지름에 스케일 적용
+       
+        float scaleFactor = transform.localScale.x; 
+        circleCollider.radius = initialRadius * scaleFactor * 1.5f;  //collider 크기 증가
 
         Destroy(gameObject, 2.0f);
     }

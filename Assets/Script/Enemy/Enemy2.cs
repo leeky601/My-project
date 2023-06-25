@@ -124,40 +124,40 @@ public class Enemy2 : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")) //플레이어와 충돌 시
         {
             isPushing = true;
             if (pushDuration > 0f)
             {
-                Vector2 pushDirection = transform.position - collision.gameObject.transform.position;
-                StartCoroutine(AddForceCoroutine(rb, pushDirection.normalized)); // 밀어내는 코루틴 시작
+                Vector2 pushDirection = transform.position - collision.gameObject.transform.position; //충돌 방향 계산
+                StartCoroutine(AddForceCoroutine(rb, pushDirection.normalized));  //밀어냄
             }
         }
-        else if (collision.gameObject.CompareTag("Enemy"))
+        else if (collision.gameObject.CompareTag("Enemy")) //적과 충돌 시
         {
             isPushing = true;
             if (pushDuration > 0f)
             {
-                Vector2 pushDirection = transform.position - collision.gameObject.transform.position;
-                StartCoroutine(AddForceCoroutine2(rb, pushDirection.normalized)); // 밀어내는 코루틴 시작
+                Vector2 pushDirection = transform.position - collision.gameObject.transform.position;//충돌 방향 계산
+                StartCoroutine(AddForceCoroutine2(rb, pushDirection.normalized)); //밀어냄
             }
         }
     }
     IEnumerator AddForceCoroutine(Rigidbody2D enemyRb, Vector2 pushDirection)
     {
         isPushing = true;
-        enemyRb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse); // 적을 밀어냅니다.
+        enemyRb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse); // 자신을 밀어냅니다.
         yield return new WaitForSeconds(pushDuration); // 일정 시간 대기
-        enemyRb.velocity = Vector2.zero; // 적의 속도 초기화
+        enemyRb.velocity = Vector2.zero; // 자신의 속도 초기화
         isPushing = false;
     }
 
     IEnumerator AddForceCoroutine2(Rigidbody2D enemyRb, Vector2 pushDirection)
     {
         isPushing = true;
-        enemyRb.AddForce(pushDirection * pushForce2, ForceMode2D.Impulse); // 적을 밀어냅니다.
+        enemyRb.AddForce(pushDirection * pushForce2, ForceMode2D.Impulse); // 자신을 밀어냅니다.
         yield return new WaitForSeconds(pushDuration2); // 일정 시간 대기
-        enemyRb.velocity = Vector2.zero; // 적의 속도 초기화
+        enemyRb.velocity = Vector2.zero; // 자신의 속도 초기화
         isPushing = false;
     }
 

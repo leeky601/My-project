@@ -16,33 +16,31 @@ public class BossATK2_Spawner : MonoBehaviour
 
     public AudioClip ATKsoundClip;
     private AudioSource audioSource;
-    // Start is called before the first frame update
+  
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        audioSource = GetComponent<AudioSource>();
-
-        
-        
+        audioSource = GetComponent<AudioSource>();       
     }
 
-    // Update is called once per frame
+  
     void Update()
     {
-        //Vector2 lookDirection = player.position - transform.position;
+        //발사 방향
         lookDirection_1 = player.position - transform.position;
         lookDirection_2 = new Vector2(player.position.x - transform.position.x + 2f, player.position.y - transform.position.y + 2f);
         lookDirection_3 = new Vector2(player.position.x - transform.position.x - 2f, player.position.y - transform.position.y - 2f);
 
-        // 일정 시간마다 총알을 발사합니다.
+       //총알 발사
         if (Time.time >= nextFireTime)
         {
+            //발사 소리
             audioSource.PlayOneShot(ATKsoundClip);
 
-            // 발사 딜레이 타임을 업데이트합니다.
+            // 발사 딜레이
             nextFireTime = Time.time + fireRate;
 
-            // 총알을 발사합니다.
+            // 플레이어를 향해 3방향 총알 발사
             GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
             bullet.GetComponent<Rigidbody2D>().velocity = lookDirection_1.normalized * bulletSpeed;
 
