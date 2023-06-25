@@ -31,7 +31,7 @@ public class PlayerMove : MonoBehaviour
     public AudioClip hitSoundClip;
     private AudioSource audioSource;
 
-    public string targetTag;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -405,17 +405,9 @@ public class PlayerMove : MonoBehaviour
         animator.SetBool("RightBackMove", false);
         animator.SetBool("checkDie", true);
        
-        DestroyObjectsWithTag();          
+                
     }
 
-    private void DestroyObjectsWithTag()
-    {
-        GameObject[] objects = GameObject.FindGameObjectsWithTag(targetTag);
-
-        foreach (GameObject obj in objects)
-        {
-            Destroy(obj);
-        }
-    }
+    
 }
 

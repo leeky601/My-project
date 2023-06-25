@@ -15,7 +15,7 @@ public class Portal : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         audioSource.PlayOneShot(PortalsoundClip);
-        Debug.Log(nextSceneNumber);
+        
     }
 
     // Update is called once per frame
