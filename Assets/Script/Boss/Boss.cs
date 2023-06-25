@@ -25,7 +25,7 @@ public class Boss : MonoBehaviour
     private int maxHp;
     private int hp;
 
-    public SceneAsset yourScene;
+    
 
     //private bool paze = false;
 
@@ -82,7 +82,7 @@ public class Boss : MonoBehaviour
 
         if (hp <= 0)
         {
-            SceneManager.LoadScene(yourScene.name);
+            SceneManager.LoadScene(7);
         }
 
        

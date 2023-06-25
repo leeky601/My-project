@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonClick : MonoBehaviour
 {
-    public SceneAsset yourScene;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +21,6 @@ public class ButtonClick : MonoBehaviour
 
     public void OnButtonClick()
     {
-        SceneManager.LoadScene(yourScene.name);
+        SceneManager.LoadScene(1);
     }
 }
