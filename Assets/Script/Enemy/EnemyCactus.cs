@@ -22,7 +22,7 @@ public class EnemyCactus : MonoBehaviour
     public Transform player;
     private Animator animator;
     private Rigidbody2D rb;
-    private int hp;
+    public int hp = 4;
 
     private float attackTimer = 0.5f;
 
@@ -41,7 +41,7 @@ public class EnemyCactus : MonoBehaviour
         player = GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        hp = 2;
+      
 
 
     }

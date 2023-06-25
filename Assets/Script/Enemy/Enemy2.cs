@@ -20,7 +20,7 @@ public class Enemy2 : MonoBehaviour
     public Transform player;
     private Animator animator;
     private Rigidbody2D rb;
-    private int hp;
+    public int hp = 2;
 
     private float attackTimer = 0.5f;
 
@@ -39,7 +39,7 @@ public class Enemy2 : MonoBehaviour
         player = GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        hp = 2;
+       
         
      
     }

@@ -148,12 +148,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c2698ecbf5e6f647bc7b8719436feef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1.5
   pushForce: 7000
   pushForce2: 0.1
   pushDuration: 0.2
   pushDuration2: 0.2
   isPushing: 0
+  hp: 7
   itemDropPrefab: {fileID: 7878150698465031301, guid: 960a4ab4fa3fc0b45ad0535f684c14bd, type: 3}
   monsterDieClip: {fileID: 8300000, guid: ef4bf2c5a93c25a4eb0b712476da8c19, type: 3}
 --- !u!95 &7631440619512288361

@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
 
-    private int hp;
+    public int hp = 3;
 
     public GameObject itemDropPrefab;
 
@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
-        hp = 3;
+     
     }
 
     // Update is called once per frame

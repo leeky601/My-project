@@ -27,7 +27,7 @@ public class Boss : MonoBehaviour
 
     public SceneAsset yourScene;
 
-    private bool paze = false;
+    //private bool paze = false;
 
     public AudioClip soundClip;
     public AudioClip soundClip2;
@@ -35,7 +35,7 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxHp = 20;
+        maxHp = 100;
         hp = maxHp;
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
@@ -59,7 +59,7 @@ public class Boss : MonoBehaviour
         healthSlider.value = (float)hp / maxHp;
         playerPositionX = playerTransform.position.x;
         bossPositionX = transform.position.x;
-        if (hp >= 10)
+        if (hp >= 50)
         {
             if (audioSource.clip != soundClip)
             { audioSource.clip = soundClip;
@@ -67,9 +67,9 @@ public class Boss : MonoBehaviour
                 audioSource.Play();
             }
         }
-        if (hp < 10)
+        if (hp < 50)
         {
-            paze = true;
+            //paze = true;
             animator.SetBool("change", true);
             StartCoroutine(SetBoolAfterDelaychange(2f));
             Tornado.SetActive(true);

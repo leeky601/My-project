@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  range: 5
-  attackDelay: 1
+  range: 7
+  attackDelay: 1.5
   projectilePrefab: {fileID: 8774724078193203301, guid: b6d86a220fa923b448ac5b8f41fb17dd, type: 3}
   pushForce: 7000
   pushForce2: 0.1
@@ -158,6 +158,7 @@ MonoBehaviour:
   pushDuration2: 0.2
   isPushing: 0
   player: {fileID: 0}
+  hp: 3
   itemDropPrefab: {fileID: 7878150698465031301, guid: 960a4ab4fa3fc0b45ad0535f684c14bd, type: 3}
   monsterDieClip: {fileID: 8300000, guid: ef4bf2c5a93c25a4eb0b712476da8c19, type: 3}
   monsterATKClip: {fileID: 8300000, guid: 3777879fc83ce7a4ead9eadc381cb269, type: 3}
