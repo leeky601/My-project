@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7855175dad781749a8bbd2c028de362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pullForce: 50
+  pullForce: 100
   isPlayerTriggered: 0
   speed: 1.5
   ATKsoundClip: {fileID: 8300000, guid: 0febc791f988c3d43ae4ef9eeff20118, type: 3}
