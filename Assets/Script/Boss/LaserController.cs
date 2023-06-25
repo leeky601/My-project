@@ -29,12 +29,5 @@ public class LaserController : MonoBehaviour
         direction = dir;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        // 레이저와 충돌한 경우 추가 동작을 수행합니다.
-        // 충돌 처리 로직 추가
-        // ...
-
-        Destroy(gameObject); // 레이저 제거
-    }
+   
 }

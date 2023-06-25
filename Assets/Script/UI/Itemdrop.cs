@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Itemdrop : MonoBehaviour
 {
     public GameObject[] itemPrefabs; // 드롭될 아이템 프리팹들
-    private float dropProbability = 1.0f; // 아이템이 드롭될 확률
+    private float dropProbability = 0.3f; // 아이템이 드롭될 확률
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +15,7 @@ public class Itemdrop : MonoBehaviour
         
         if (rd <= dropProbability)
         {
-            if (rd < 0.5f && SceneManager.GetActiveScene().name != "Boss")
+            if (rd < 0.05f && SceneManager.GetActiveScene().name != "Boss")
             {
                 GameObject item = Instantiate(itemPrefabs[2], transform.position, Quaternion.identity);
             }
